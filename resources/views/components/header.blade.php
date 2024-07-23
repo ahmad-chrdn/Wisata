@@ -22,20 +22,41 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title text-center">Akun</div>
-                <a href="{{ route('admin.profile.edit') }}" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i><span>Profil Saya</span>
-                </a>
+
+                @if (auth()->user()->role === 'admin')
+                    <a href="{{ route('admin.profile.edit') }}" class="dropdown-item has-icon">
+                        <i class="far fa-user"></i><span>Profil Saya</span>
+                    </a>
+                @elseif (auth()->user()->role === 'kepala sekolah')
+                    <a href="{{ route('kepala_sekolah.profile.edit') }}" class="dropdown-item has-icon">
+                        <i class="far fa-user"></i><span>Profil Saya</span>
+                    </a>
+                @elseif (auth()->user()->role === 'guru bk')
+                    <a href="{{ route('guru_bk.profile.edit') }}" class="dropdown-item has-icon">
+                        <i class="far fa-user"></i><span>Profil Saya</span>
+                    </a>
+                @elseif (auth()->user()->role === 'wali kelas')
+                    <a href="{{ route('wali_kelas.profile.edit') }}" class="dropdown-item has-icon">
+                        <i class="far fa-user"></i><span>Profil Saya</span>
+                    </a>
+                @elseif (auth()->user()->role === 'guru piket')
+                    <a href="{{ route('guru_piket.profile.edit') }}" class="dropdown-item has-icon">
+                        <i class="far fa-user"></i><span>Profil Saya</span>
+                    </a>
+                @endif
+
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                    this.closest('form').submit();"
+                        this.closest('form').submit();"
                         class="dropdown-item has-icon text-danger">
                         <i class="fas fa-sign-out-alt"></i><span>Keluar</span>
                     </a>
                 </form>
             </div>
+
         </li>
     </ul>
 </nav>

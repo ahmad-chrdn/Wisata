@@ -29,8 +29,14 @@
             @auth
                 @if (auth()->user()->role === 'admin')
                     @include('components.sidebar-admin')
-                @else
-                    @include('components.sidebar-pegawai')
+                @elseif (auth()->user()->role === 'kepala sekolah')
+                    @include('components.sidebar-kepala_sekolah')
+                @elseif (auth()->user()->role === 'guru bk')
+                    @include('components.sidebar-guru_bk')
+                @elseif (auth()->user()->role === 'wali kelas')
+                    @include('components.sidebar-wali_kelas')
+                @elseif (auth()->user()->role === 'guru piket')
+                    @include('components.sidebar-guru_piket')
                 @endif
             @endauth
 

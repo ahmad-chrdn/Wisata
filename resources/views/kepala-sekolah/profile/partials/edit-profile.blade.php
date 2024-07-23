@@ -3,44 +3,31 @@
         <form id="send-verification" method="post" action="{{ route('verification.send') }}">
             @csrf
         </form>
-        <form method="post" action="{{ route('pegawai.profile.update') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('kepala_sekolah.profile.update') }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="card-header">
-                <h4>Ubah Profil</h4>
+                <h4 class="text-dark">Ubah Profil</h4>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class=" form-group col-md-4">
-                        <img alt="image" src="{{ $user->getProfilePictureUrlAttribute() }}"
-                            class="rounded-circle profile-widget-picture"
-                            style="max-width: 100px; height: auto;
-                            margin-bottom: 15px;">
-                        <input type="file" id="picture" name="picture" accept="image/*">
-                        @error('picture')
+                    <div class=" form-group col-md-7">
+                        <img src="{{ asset('storage/foto/' . $user->foto) }}" alt="Foto Admin"
+                            style="width: 100px; height: 100px;" class="shadow-light rounded-circle mb-2">
+                        <input type="file" id="foto" name="foto" accept="image/*"
+                            class="form-control @error('foto') is-invalid @enderror">
+                        @error('foto')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-10">
-                        <label for="nip" class="form-label">NIP</label>
-                        <input type="text" class="form-control" id="nip" name="nip"
-                            value="{{ $user->nip }}" readonly>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-10">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
-                            name="nama" placeholder="Masukkan Nama" value="{{ old('nama', $user->nama) }}">
-                        @error('nama')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <input type="text" class="form-control" id="nama" name="nama"
+                            value="{{ $user->nama }}">
                     </div>
                 </div>
                 <div class="row">
@@ -56,6 +43,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="reset" class="btn btn-warning">Reset</button>
             </div>
         </form>
     </div>

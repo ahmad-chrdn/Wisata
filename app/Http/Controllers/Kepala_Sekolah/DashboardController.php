@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pegawai;
+namespace App\Http\Controllers\Kepala_Sekolah;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,6 +12,6 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('pegawai.dashboard');
+        return view('kepala-sekolah.dashboard');
     }
 }

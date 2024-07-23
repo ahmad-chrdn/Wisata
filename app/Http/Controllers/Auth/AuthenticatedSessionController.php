@@ -31,8 +31,26 @@ class AuthenticatedSessionController extends Controller
         // Logika pengalihan berdasarkan peran (role)
         $user = Auth::user();
 
-        // Arahkan ke dashboard admin jika role 'admin', dan ke dashboard pegawai jika role 'pegawai'
-        $dashboardUrl = $user->role === 'admin' ? route('admin.dashboard') : route('pegawai.dashboard');
+        // Tentukan URL dashboard berdasarkan peran pengguna
+        $dashboardUrl = '';
+
+        switch ($user->role) {
+            case 'admin':
+                $dashboardUrl = route('admin.dashboard');
+                break;
+            case 'kepala sekolah':
+                $dashboardUrl = route('kepala_sekolah.dashboard');
+                break;
+            case 'guru bk':
+                $dashboardUrl = route('guru_bk.dashboard');
+                break;
+            case 'wali kelas':
+                $dashboardUrl = route('wali_kelas.dashboard');
+                break;
+            case 'guru piket':
+                $dashboardUrl = route('guru_piket.dashboard');
+                break;
+        }
 
         // Redirect ke dashboard yang sesuai
         return redirect($dashboardUrl);

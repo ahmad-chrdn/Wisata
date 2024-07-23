@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Kepala_Sekolah;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('admin.profile.edit', [
+        return view('kepala-sekolah.profile.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -58,6 +58,6 @@ class ProfileController extends Controller
         // Menyimpan perubahan pada model user
         $user->save();
 
-        return redirect()->route('admin.profile.edit')->with(['success' => 'Profil berhasil diperbarui!']);
+        return redirect()->route('kepala_sekolah.profile.edit')->with(['success' => 'Profil berhasil diperbarui!']);
     }
 }

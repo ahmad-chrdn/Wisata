@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Pegawai\DashboardController as PegawaiDashboardController;
+use App\Http\Controllers\Kepala_Sekolah\DashboardController as KepalaSekolahDashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Kepala_Sekolah\ProfileController as KepalaSekolahProfileController;
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\PangkatController;
 use App\Http\Controllers\Admin\PegawaiController;
@@ -155,9 +156,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Rute Pegawai
-Route::group(['prefix' => 'kepala sekolah', 'middleware' => ['auth', 'verified'], 'as' => 'kepala sekolah.'], function () {
-    Route::get('/dashboard', PegawaiDashboardController::class)->name('dashboard');
+// Rute Kepala Sekolah
+Route::group(['prefix' => 'kepala_sekolah', 'middleware' => ['auth', 'verified'], 'as' => 'kepala_sekolah.'], function () {
+    // Kepala Sekolah->Dashboard
+    Route::get('/dashboard', KepalaSekolahDashboardController::class)->name('dashboard');
+     // Kepala Sekolah->Profil
+     Route::get('/profile', [KepalaSekolahProfileController::class, 'edit'])->name('profile.edit');
+     Route::patch('/profile', [KepalaSekolahProfileController::class, 'update'])->name('profile.update');
+     Route::delete('/profile', [KepalaSekolahProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';
