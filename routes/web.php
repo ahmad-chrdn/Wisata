@@ -160,10 +160,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
 Route::group(['prefix' => 'kepala_sekolah', 'middleware' => ['auth', 'verified'], 'as' => 'kepala_sekolah.'], function () {
     // Kepala Sekolah->Dashboard
     Route::get('/dashboard', KepalaSekolahDashboardController::class)->name('dashboard');
-     // Kepala Sekolah->Profil
-     Route::get('/profile', [KepalaSekolahProfileController::class, 'edit'])->name('profile.edit');
-     Route::patch('/profile', [KepalaSekolahProfileController::class, 'update'])->name('profile.update');
-     Route::delete('/profile', [KepalaSekolahProfileController::class, 'destroy'])->name('profile.destroy');
+    // Kepala Sekolah->Profil
+    Route::get('/profile', [KepalaSekolahProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [KepalaSekolahProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [KepalaSekolahProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';
