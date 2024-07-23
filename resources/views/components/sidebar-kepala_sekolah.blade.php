@@ -18,6 +18,22 @@
             </li>
 
             <li class="menu-header">Menu Utama</li>
+            <li class="nav-item dropdown {{ Request::is('kepala_sekolah/kelola-siswa*') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Kelola Siswa</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('kepala_sekolah/kelola-siswa/presensi') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('kepala_sekolah.kelola-siswa.presensi.index') }}">Data Presensi Siswa</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('kepala_sekolah/kelola-siswa/bermasalah') ? 'active' : '' }}">
+                        <a class="nav-link" href="#">Data Siswa Bermasalah</a>
+                    </li>
+                </ul>
+            </li>
             {{-- <li class="nav-item dropdown {{ Request::is('admin/kepala-sekolah*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-user-friends"></i>

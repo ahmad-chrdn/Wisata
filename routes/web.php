@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Kepala_Sekolah\DashboardController as KepalaSekolahDashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Kepala_Sekolah\PresensiSiswaController;
 use App\Http\Controllers\Kepala_Sekolah\ProfileController as KepalaSekolahProfileController;
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\PangkatController;
@@ -164,6 +165,10 @@ Route::group(['prefix' => 'kepala_sekolah', 'middleware' => ['auth', 'verified']
     Route::get('/profile', [KepalaSekolahProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [KepalaSekolahProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [KepalaSekolahProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Kepala Sekolah->Siswa
+    Route::get('/kelola-siswa/presensi', [PresensiSiswaController::class, 'index'])->name('kelola-siswa.presensi.index');
+
 });
 
 require __DIR__ . '/auth.php';
