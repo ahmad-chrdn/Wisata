@@ -8,8 +8,8 @@
         </ul>
         <div class="search-element">
             <a href="#" class="logo">
-                <img src="{{ asset('img/Logo-SIKP.png') }}" alt="Logo" class="logo-image"
-                    style="width: 140px; height: auto;">
+                <img src="{{ asset('img/TUT WURI HANDAYANI.png') }}" alt="Logo" class="logo-image"
+                    style="width: 90px; height: auto;">
             </a>
         </div>
     </form>

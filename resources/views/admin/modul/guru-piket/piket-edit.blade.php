@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Wali Kelas')
+@section('title', 'Edit Guru Piket')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,21 +10,21 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Wali kelas</h1>
+                <h1>Guru Piket</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item">Edit Wali Kelas</div>
+                    <div class="breadcrumb-item">Edit Guru Piket</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Edit Wali Kelas</h2>
+                <h2 class="section-title">Edit Guru Piket</h2>
 
                 <div class="row mt-sm-4">
                     <div class="col-12 col-md-12 col-lg-8">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('admin.wali-kelas.update', $user->id) }}" method="POST"
+                                <form action="{{ route('admin.guru-piket.update', $user->id) }}" method="POST"
                                     enctype="multipart/form-data" class="needs-validation" novalidate>
                                     @csrf
                                     @method('PUT')
@@ -95,9 +95,9 @@
                                         </div> --}}
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="{{ route('admin.wali-kelas.edit', $user->id) }}"
+                                    <a href="{{ route('admin.guru-piket.edit', $user->id) }}"
                                         class="btn btn-warning">Reset</a>
-                                    <a href="{{ route('admin.wali-kelas.index') }}" class="btn btn-success">Kembali</a>
+                                    <a href="{{ route('admin.guru-piket.index') }}" class="btn btn-success">Kembali</a>
                                 </form>
                             </div>
                         </div>

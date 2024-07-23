@@ -80,18 +80,19 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                                    
                                     <div class="form-group">
                                         <label for="status">Status</label>
-                                        <input type="text" id="status" name="status"
-                                            value="{{ old('status', $user->status) }}"
-                                            class="form-control @error('status') is-invalid @enderror"
-                                            placeholder="Masukkan status">
-                                        @error('status')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                        <select id="status" name="status" class="form-control" required autofocus>
+                                            <option value="" selected disabled>Pilih Status</option>
+                                            <option value="Aktif" {{ $user->status == 'Aktif' ? 'selected' : '' }}>Aktif
+                                            </option>
+                                            <option value="Tidak Aktif" {{ $user->status == 'Tidak Aktif' ? 'selected' : '' }}>Tidak Aktif
+                                            </option>                                            
+                                        </select>
+                                        {{-- <div class="invalid-feedback">
+                                            Status wajib dipilih.
+                                        </div> --}}
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                     <a href="{{ route('admin.kepala-sekolah.edit', $user->id) }}"

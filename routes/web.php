@@ -9,6 +9,11 @@ use App\Http\Controllers\Admin\PegawaiController;
 use App\Http\Controllers\Admin\KepalaController;
 use App\Http\Controllers\Admin\GuruBKController;
 use App\Http\Controllers\Admin\WaliKelasController;
+use App\Http\Controllers\Admin\GuruPiketController;
+use App\Http\Controllers\Admin\KelasController;
+use App\Http\Controllers\Admin\JurusanController;
+use App\Http\Controllers\Admin\SemesterController;
+use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\DukController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PegawaiUserController;
@@ -100,16 +105,47 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
     Route::put('/guru-bk/data/{id}', [GuruBKController::class, 'update'])->name('guru-bk.update');
     Route::delete('/guru-bk/data/{id}', [GuruBKController::class, 'destroy'])->name('guru-bk.destroy');
 
-     // Admin->WaliKelas
-     Route::get('/wali-kelas/data', [WaliKelasController::class, 'index'])->name('wali-kelas.index');
-     // Route::get('/wali-kelas/export', [PegawaiExportController::class, 'export'])->name('wali-kelas.export');
-     Route::get('/wali-kelas/create', [WaliKelasController::class, 'create'])->name('wali-kelas.create');
-     Route::post('/wali-kelas', [WaliKelasController::class, 'store'])->name('wali-kelas.store');
-     Route::get('/wali-kelas/data/{id}/edit', [WaliKelasController::class, 'edit'])->name('wali-kelas.edit');
-     Route::put('/wali-kelas/data/{id}', [WaliKelasController::class, 'update'])->name('wali-kelas.update');
-     Route::delete('/wali-kelas/data/{id}', [WaliKelasController::class, 'destroy'])->name('wali-kelas.destroy');
+    // Admin->WaliKelas
+    Route::get('/wali-kelas/data', [WaliKelasController::class, 'index'])->name('wali-kelas.index');
+    // Route::get('/wali-kelas/export', [PegawaiExportController::class, 'export'])->name('wali-kelas.export');
+    Route::get('/wali-kelas/create', [WaliKelasController::class, 'create'])->name('wali-kelas.create');
+    Route::post('/wali-kelas', [WaliKelasController::class, 'store'])->name('wali-kelas.store');
+    Route::get('/wali-kelas/data/{id}/edit', [WaliKelasController::class, 'edit'])->name('wali-kelas.edit');
+    Route::put('/wali-kelas/data/{id}', [WaliKelasController::class, 'update'])->name('wali-kelas.update');
+    Route::delete('/wali-kelas/data/{id}', [WaliKelasController::class, 'destroy'])->name('wali-kelas.destroy');
 
+    // Admin->GuruPiket
+    Route::get('/guru-piket/data', [GuruPiketController::class, 'index'])->name('guru-piket.index');
+    // Route::get('/guru-piket/export', [PegawaiExportController::class, 'export'])->name('guru-piket.export');
+    Route::get('/guru-piket/create', [GuruPiketController::class, 'create'])->name('guru-piket.create');
+    Route::post('/guru-piket', [GuruPiketController::class, 'store'])->name('guru-piket.store');
+    Route::get('/guru-piket/data/{id}/edit', [GuruPiketController::class, 'edit'])->name('guru-piket.edit');
+    Route::put('/guru-piket/data/{id}', [GuruPiketController::class, 'update'])->name('guru-piket.update');
+    Route::delete('/guru-piket/data/{id}', [GuruPiketController::class, 'destroy'])->name('guru-piket.destroy');
 
+    // Admin->Kelas
+    Route::get('/kelola-akademik/kelas', [KelasController::class, 'index'])->name('kelola-akademik.kelas.index');
+    Route::post('/kelola-akademik/kelas', [KelasController::class, 'store'])->name('kelola-akademik.kelas.store');
+    Route::put('/kelola-akademik/kelas/{id}', [KelasController::class, 'update'])->name('kelola-akademik.kelas.update');
+    Route::delete('/kelola-akademik/kelas/{id}', [KelasController::class, 'destroy'])->name('kelola-akademik.kelas.destroy');
+
+    // Admin->Jurusan
+    Route::get('/kelola-akademik/jurusan', [JurusanController::class, 'index'])->name('kelola-akademik.jurusan.index');
+    Route::post('/kelola-akademik/jurusan', [JurusanController::class, 'store'])->name('kelola-akademik.jurusan.store');
+    Route::put('/kelola-akademik/jurusan/{id}', [JurusanController::class, 'update'])->name('kelola-akademik.jurusan.update');
+    Route::delete('/kelola-akademik/jurusan/{id}', [JurusanController::class, 'destroy'])->name('kelola-akademik.jurusan.destroy');
+
+    // Admin->Semseter
+    Route::get('/kelola-akademik/semester', [SemesterController::class, 'index'])->name('kelola-akademik.semester.index');
+    Route::post('/kelola-akademik/semester', [SemesterController::class, 'store'])->name('kelola-akademik.semester.store');
+    Route::put('/kelola-akademik/semester/{id}', [SemesterController::class, 'update'])->name('kelola-akademik.semester.update');
+    Route::delete('/kelola-akademik/semester/{id}', [SemesterController::class, 'destroy'])->name('kelola-akademik.semester.destroy');
+
+    // Admin->Siswa
+    Route::get('/kelola-siswa/siswa', [SiswaController::class, 'index'])->name('kelola-siswa.siswa.index');
+    Route::post('/kelola-siswa/siswa', [SiswaController::class, 'store'])->name('kelola-siswa.siswa.store');
+    Route::put('/kelola-siswa/siswa/{id}', [SiswaController::class, 'update'])->name('kelola-siswa.siswa.update');
+    Route::delete('/kelola-siswa/siswa/{id}', [SiswaController::class, 'destroy'])->name('kelola-siswa.siswa.destroy');
 
     // Admin->Profil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
