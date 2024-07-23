@@ -13,10 +13,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Data Siswa</h1>
+                <h1>Data Siswa Presensi</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item">Data Siswa</div>
+                    <div class="breadcrumb-item">Data Siswa Presensi</div>
                 </div>
             </div>
 

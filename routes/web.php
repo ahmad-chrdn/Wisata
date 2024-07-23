@@ -4,7 +4,15 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Kepala_Sekolah\DashboardController as KepalaSekolahDashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Kepala_Sekolah\PresensiSiswaController;
+use App\Http\Controllers\Kepala_Sekolah\BermasalahController;
 use App\Http\Controllers\Kepala_Sekolah\ProfileController as KepalaSekolahProfileController;
+use App\Http\Controllers\Guru_BK\Dashboard2Controller as GuruBKDashboard2Controller;
+use App\Http\Controllers\Guru_BK\PresensiSiswa2Controller;
+use App\Http\Controllers\Guru_BK\Bermasalah2Controller;
+use App\Http\Controllers\Guru_BK\Profile2Controller as Guru_BKProfile2Controller;
+use App\Http\Controllers\Wali_Kelas\Dashboard3Controller as WaliKelasDashboard3Controller;
+use App\Http\Controllers\Wali_Kelas\PresensiSiswa3Controller;
+use App\Http\Controllers\Wali_Kelas\Profile3Controller as Wali_KelasProfile3Controller;
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\PangkatController;
 use App\Http\Controllers\Admin\PegawaiController;
@@ -168,6 +176,40 @@ Route::group(['prefix' => 'kepala_sekolah', 'middleware' => ['auth', 'verified']
 
     // Kepala Sekolah->Siswa
     Route::get('/kelola-siswa/presensi', [PresensiSiswaController::class, 'index'])->name('kelola-siswa.presensi.index');
+
+    // Kepala Sekolah->Bermasalah
+    Route::get('/kelola-siswa/bermasalah', [BermasalahController::class, 'index'])->name('kelola-siswa.bermasalah.index');
+
+});
+
+// Rute Guru Bk
+Route::group(['prefix' => 'guru_bk', 'middleware' => ['auth', 'verified'], 'as' => 'guru_bk.'], function () {
+    // Guru Bk->Dashboard
+    Route::get('/dashboard', GuruBKDashboard2Controller::class)->name('dashboard');
+    // Guru Bk->Profil
+    Route::get('/profile', [Guru_BKProfile2Controller::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [Guru_BKProfile2Controller::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [Guru_BKProfile2Controller::class, 'destroy'])->name('profile.destroy');
+
+    // Guru Bk->Siswa
+    Route::get('/guru-bk/presensi', [PresensiSiswa2Controller::class, 'index'])->name('guru-bk.presensi.index');
+
+    // Guru Bk->Bermasalah
+    Route::get('/guru-bk/bermasalah', [Bermasalah2Controller::class, 'index'])->name('guru-bk.bermasalah.index');
+
+});
+
+// Rute Wali Kelas
+Route::group(['prefix' => 'wali_kelas', 'middleware' => ['auth', 'verified'], 'as' => 'wali_kelas.'], function () {
+    // Wali Kelas->Dashboard
+    Route::get('/dashboard', WaliKelasDashboard3Controller::class)->name('dashboard');
+    // Wali Kelas->Profil
+    Route::get('/profile', [Wali_KelasProfile3Controller::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [Wali_KelasProfile3Controller::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [Wali_KelasProfile3Controller::class, 'destroy'])->name('profile.destroy');
+
+    // Wali Kelas->Siswa
+    Route::get('/wali-kelas/presensi', [PresensiSiswa3Controller::class, 'index'])->name('wali-kelas.presensi.index');
 
 });
 

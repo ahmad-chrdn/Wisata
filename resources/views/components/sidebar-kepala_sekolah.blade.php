@@ -30,7 +30,7 @@
                 </ul>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('kepala_sekolah/kelola-siswa/bermasalah') ? 'active' : '' }}">
-                        <a class="nav-link" href="#">Data Siswa Bermasalah</a>
+                        <a class="nav-link" href="{{ route('kepala_sekolah.kelola-siswa.bermasalah.index') }}">Data Siswa Bermasalah</a>
                     </li>
                 </ul>
             </li>

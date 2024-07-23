@@ -1,39 +1,39 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
+            <a href="{{ route('guru_bk.dashboard') }}"><img src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
                     style="height: 90px" alt="SMKN 01 SEMPARUK"></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
+            <a href="{{ route('guru_bk.dashboard') }}"><img src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
                     alt="SMKN 01 SEMPARUK" class="img-fluid" style="max-width: 90px; max-height: 90px;"></a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Beranda</li>
-            <li class='{{ Request::is('admin/dashboard') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <li class='{{ Request::is('guru_bk/dashboard') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ route('guru_bk.dashboard') }}">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
             <li class="menu-header">Menu Utama</li>
-            <li class="nav-item dropdown {{ Request::is('admin/kepala-sekolah*') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Request::is('guru_bk/guru-bk*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-user-friends"></i>
-                    <span>Kelola Kepala Sekolah</span>
+                    <span>Kelola Siswa</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="{{ Request::is('admin/kepala-sekolah/create') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.kepala-sekolah.create') }}">Buat Akun</a>
+                    <li class="{{ Request::is('guru_bk/guru-bk/bermasalah') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('guru_bk.guru-bk.bermasalah.index') }}">Data Siswa Bermaslah</a>
                     </li>
-                    <li class="{{ Request::is('admin/kepala-sekolah/data') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.kepala-sekolah.index') }}">Data Kepala Sekolah</a>
+                    <li class="{{ Request::is('guru_bk/guru-bk/presensi') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('guru_bk.guru-bk.presensi.index') }}">Data Siswa Presensi</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ Request::is('admin/guru-bk*') ? 'active' : '' }}">
+            {{-- <li class="nav-item dropdown {{ Request::is('admin/guru-bk*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-user-friends"></i>
                     <span>Kelola Guru Bk</span>
@@ -131,7 +131,7 @@
                         <a class="nav-link" href="{{ route('admin.pegawai.index') }}">Kelas XI</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             {{-- <li class='{{ Request::is('admin/pangkat') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('admin.pangkat.index') }}">
