@@ -13,6 +13,9 @@ use App\Http\Controllers\Guru_BK\Profile2Controller as Guru_BKProfile2Controller
 use App\Http\Controllers\Wali_Kelas\Dashboard3Controller as WaliKelasDashboard3Controller;
 use App\Http\Controllers\Wali_Kelas\PresensiSiswa3Controller;
 use App\Http\Controllers\Wali_Kelas\Profile3Controller as Wali_KelasProfile3Controller;
+use App\Http\Controllers\Guru_Piket\Dashboard4Controller as GuruPiketDashboard4Controller;
+use App\Http\Controllers\Guru_Piket\PresensiSiswa4Controller;
+use App\Http\Controllers\Guru_Piket\Profile4Controller as Guru_PiketProfil4Controller;
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\PangkatController;
 use App\Http\Controllers\Admin\PegawaiController;
@@ -210,6 +213,20 @@ Route::group(['prefix' => 'wali_kelas', 'middleware' => ['auth', 'verified'], 'a
 
     // Wali Kelas->Siswa
     Route::get('/wali-kelas/presensi', [PresensiSiswa3Controller::class, 'index'])->name('wali-kelas.presensi.index');
+
+});
+
+// Rute Guru Piket
+Route::group(['prefix' => 'guru_piket', 'middleware' => ['auth', 'verified'], 'as' => 'guru_piket.'], function () {
+    // Guru Piket->Dashboard
+    Route::get('/dashboard', GuruPiketDashboard4Controller::class)->name('dashboard');
+    // Guru Piket->Profil
+    Route::get('/profile', [Guru_PiketProfil4Controller::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [Guru_PiketProfil4Controller::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [Guru_PiketProfil4Controller::class, 'destroy'])->name('profile.destroy');
+
+    // Guru Piket->Siswa
+    Route::get('/guru-piket/presensi', [PresensiSiswa4Controller::class, 'index'])->name('guru-piket.presensi.index');
 
 });
 
