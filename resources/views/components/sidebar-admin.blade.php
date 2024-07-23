@@ -7,7 +7,7 @@
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('admin.dashboard') }}"><img
-                    src="{{ asset('img/TUT WURI HANDAYANI.png') }}" 
+                    src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
                     alt="SMKN 01 SEMPARUK" class="img-fluid" style="max-width: 90px; max-height: 90px;"></a>
         </div>
         <ul class="sidebar-menu">
@@ -85,23 +85,23 @@
                     <i class="fas fa-user-friends"></i>
                     <span>Kelola Akademik</span>
                 </a>
-                <ul class="dropdown-menu">                  
+                <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/kelola-akademik/kelas') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-akademik.kelas.index') }}">Data Kelas</a>
-                    </li>                   
+                    </li>
                 </ul>
-                <ul class="dropdown-menu">                  
+                <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/kelola-akademik/jurusan') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-akademik.jurusan.index') }}">Data Jurusan</a>
-                    </li>                   
+                    </li>
                 </ul>
-                <ul class="dropdown-menu">                  
+                <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/kelola-akademik/semester') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-akademik.semester.index') }}">Data Semester</a>
-                    </li>                   
+                    </li>
                 </ul>
             </li>
-                        
+
 
             <li class="nav-item dropdown {{ Request::is('admin/kelola-siswa*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
@@ -112,9 +112,9 @@
                     <li class="{{ Request::is('admin/kelola-siswa/siswa') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-siswa.siswa.index') }}">Data Siswa</a>
                     </li>
-                    {{-- <li class="{{ Request::is('admin/kelola-siswa/presensi') ? 'active' : '' }}">
+                    <li class="{{ Request::is('admin/kelola-siswa/presensi') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-siswa.presensi.index') }}">Data Presensi Siswa</a>
-                    </li> --}}
+                    </li>
                 </ul>
             </li>
 

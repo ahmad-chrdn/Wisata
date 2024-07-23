@@ -320,11 +320,16 @@
     <script src="{{ asset('js/page/modules-toastr.js') }}"></script>
 
     <script>
-        // Message with toastr
         @if (session()->has('success'))
             iziToast.success({
                 title: 'BERHASIL!',
                 message: '{{ session('success') }}',
+                position: 'topCenter'
+            });
+        @elseif ($errors->has('nis'))
+            iziToast.error({
+                title: 'GAGAL!',
+                message: 'Panjang NIS harus 10 karakter.',
                 position: 'topCenter'
             });
         @endif

@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\DukController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PegawaiUserController;
+use App\Http\Controllers\Admin\PresensiController;
 use App\Http\Controllers\PegawaiExportController;
 use Illuminate\Support\Facades\Route;
 
@@ -146,6 +147,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
     Route::post('/kelola-siswa/siswa', [SiswaController::class, 'store'])->name('kelola-siswa.siswa.store');
     Route::put('/kelola-siswa/siswa/{id}', [SiswaController::class, 'update'])->name('kelola-siswa.siswa.update');
     Route::delete('/kelola-siswa/siswa/{id}', [SiswaController::class, 'destroy'])->name('kelola-siswa.siswa.destroy');
+    Route::get('/kelola-siswa/presensi', [PresensiController::class, 'index'])->name('kelola-siswa.presensi.index');
 
     // Admin->Profil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
