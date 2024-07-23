@@ -19,20 +19,20 @@ class SiswaController extends Controller
         $kelass = Kelas::all();
         $jurusans = Jurusan::all();
         $semesters = Semester::where('status', 1)->get();
-        
+
         return view('admin.modul.kelola-siswa.siswa', compact('siswas', 'kelass', 'jurusans', 'semesters'));
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            'nis' => ['required', 'unique:siswas'],
-            'nm_siswa' => ['required'],
-            'jk' => ['required'],
+            'nis' => ['required', 'string', 'min:10', 'max:10', 'unique:siswas'],
+            'nm_siswa' => ['required', 'string'],
+            'jk' => ['required', 'string'],
             'kelas_id' => ['required', 'exists:kelass,id'],
             'jurusan_id' => ['required', 'exists:jurusans,id'],
             'semester_id' => ['required', 'exists:semesters,id'],
-            'status_siswa' => ['required'],
+            'status_siswa' => ['required', 'string'],
         ]);
 
         Siswa::create($validatedData);
@@ -41,27 +41,28 @@ class SiswaController extends Controller
             ->with('success', 'Data siswa berhasil ditambahkan.');
     }
 
-    public function update(Request $request, Siswa $siswa): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
         $validatedData = $request->validate([
-            'nis' => ['required', 'unique:siswas,nis,' . $siswa->id],
-            'nm_siswa' => ['required'],
-            'jk' => ['required'],
+            'nis' => ['required', 'string', 'min:10', 'max:10', 'unique:siswas,nis,' . $id],
+            'nm_siswa' => ['required', 'string'],
+            'jk' => ['required', 'string'],
             'kelas_id' => ['required', 'exists:kelass,id'],
             'jurusan_id' => ['required', 'exists:jurusans,id'],
             'semester_id' => ['required', 'exists:semesters,id'],
-            'status_siswa' => ['required'],
+            'status_siswa' => ['required', 'string'],
         ]);
 
+        $siswa = Siswa::findOrFail($id);
         $siswa->update($validatedData);
 
         return redirect()->route('admin.kelola-siswa.siswa.index')
             ->with('success', 'Data siswa berhasil diperbarui.');
     }
 
-    public function destroy(Siswa $siswa): RedirectResponse
+    public function destroy($id): RedirectResponse
     {
-        $siswa->delete();
+        Siswa::destroy($id);
 
         return redirect()->route('admin.kelola-siswa.siswa.index')
             ->with('success', 'Data siswa berhasil dihapus.');
