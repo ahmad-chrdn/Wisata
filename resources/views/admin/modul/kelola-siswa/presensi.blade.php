@@ -32,14 +32,13 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Hari</th>
                                                 <th>NIS</th>
                                                 <th>Nama Siswa</th>
-                                                <th>Jenis Kelamin</th>
                                                 <th>Kelas</th>
                                                 <th>Jurusan</th>
-                                                <th>Semester</th>
                                                 <th>Status</th>
-                                                <th>Opsi</th>
+                                                <th>Waktu</th>
                                             </tr>
                                         </thead>
                                         <tbody>
