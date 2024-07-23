@@ -27,7 +27,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addSiswa"><i class="fa fa-plus"></i> Tambah Siswa</a>
+                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addSiswa"><i
+                                        class="fa fa-plus"></i> Tambah Siswa</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -57,11 +58,15 @@
                                                     <td>{{ $siswa->semester->semester }}</td>
                                                     <td>{{ $siswa->status_siswa == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
                                                     <td>
-                                                        <form method="POST" action="{{ route('admin.kelola-siswa.siswa.destroy', $siswa->id) }}">
-                                                            <a class="btn btn-success btn-sm" href="#" data-toggle="modal" data-target="#editSiswa{{ $siswa->id }}">Edit</a>
+                                                        <form method="POST"
+                                                            action="{{ route('admin.kelola-siswa.siswa.destroy', $siswa->id) }}">
+                                                            <a class="btn btn-success btn-sm" href="#"
+                                                                data-toggle="modal"
+                                                                data-target="#editSiswa{{ $siswa->id }}">Edit</a>
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm" role="button">Hapus</button>
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                role="button">Hapus</button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -89,18 +94,21 @@
                 </div>
                 <div class="modal-body">
                     <!-- Isi formulir untuk menambahkan data -->
-                    <form method="post" action="{{ route('admin.kelola-siswa.siswa.store') }}" class="needs-validation" novalidate="">
+                    <form method="post" action="{{ route('admin.kelola-siswa.siswa.store') }}" class="needs-validation"
+                        novalidate="">
                         @csrf
                         <div class="form-group">
                             <label for="nis">NIS</label>
-                            <input type="text" id="nis" name="nis" class="form-control" placeholder="Masukkan NIS" required>
+                            <input type="text" id="nis" name="nis" class="form-control"
+                                placeholder="Masukkan NIS" required>
                             <div class="invalid-feedback">
                                 NIS wajib diisi.
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="nm_siswa">Nama Siswa</label>
-                            <input type="text" id="nm_siswa" name="nm_siswa" class="form-control" placeholder="Masukkan Nama Siswa" required>
+                            <input type="text" id="nm_siswa" name="nm_siswa" class="form-control"
+                                placeholder="Masukkan Nama Siswa" required>
                             <div class="invalid-feedback">
                                 Nama siswa wajib diisi.
                             </div>
@@ -108,11 +116,13 @@
                         <div class="form-group">
                             <label>Jenis Kelamin</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="jk_l" value="L" required>
+                                <input class="form-check-input" type="radio" name="jk" id="jk_l" value="L"
+                                    required>
                                 <label class="form-check-label" for="jk_l">Laki-laki</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="jk_p" value="P" required>
+                                <input class="form-check-input" type="radio" name="jk" id="jk_p" value="P"
+                                    required>
                                 <label class="form-check-label" for="jk_p">Perempuan</label>
                             </div>
                             <div class="invalid-feedback">
@@ -157,7 +167,7 @@
                                 Semester wajib dipilih.
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="status_siswa">Status</label>
                             <select id="status_siswa" name="status_siswa" class="form-control" required>
@@ -179,7 +189,8 @@
 
     <!-- Modal Edit Siswa -->
     @foreach ($siswas as $siswa)
-        <div class="modal fade" id="editSiswa{{ $siswa->id }}" tabindex="-1" role="dialog" aria-labelledby="editSiswaLabel{{ $siswa->id }}" aria-hidden="true">
+        <div class="modal fade" id="editSiswa{{ $siswa->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="editSiswaLabel{{ $siswa->id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -190,19 +201,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- Isi formulir untuk mengedit data -->
-                        <form method="post" action="{{ route('admin.kelola-siswa.siswa.update', $siswa->id) }}" class="needs-validation" novalidate="">
+                        <form method="post" action="{{ route('admin.kelola-siswa.siswa.update', $siswa->id) }}"
+                            class="needs-validation" novalidate="">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="nis{{ $siswa->id }}">NIS</label>
-                                <input type="text" id="nis{{ $siswa->id }}" name="nis" class="form-control" value="{{ $siswa->nis }}" required>
+                                <input type="text" id="nis{{ $siswa->id }}" name="nis" class="form-control"
+                                    value="{{ $siswa->nis }}" required>
                                 <div class="invalid-feedback">
                                     NIS wajib diisi.
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="nm_siswa{{ $siswa->id }}">Nama Siswa</label>
-                                <input type="text" id="nm_siswa{{ $siswa->id }}" name="nm_siswa" class="form-control" value="{{ $siswa->nm_siswa }}" required>
+                                <input type="text" id="nm_siswa{{ $siswa->id }}" name="nm_siswa"
+                                    class="form-control" value="{{ $siswa->nm_siswa }}" required>
                                 <div class="invalid-feedback">
                                     Nama siswa wajib diisi.
                                 </div>
@@ -210,11 +224,15 @@
                             <div class="form-group">
                                 <label>Jenis Kelamin</label><br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="jk" id="jk_l{{ $siswa->id }}" value="L" {{ $siswa->jk == 'L' ? 'checked' : '' }} required>
+                                    <input class="form-check-input" type="radio" name="jk"
+                                        id="jk_l{{ $siswa->id }}" value="L"
+                                        {{ $siswa->jk == 'L' ? 'checked' : '' }} required>
                                     <label class="form-check-label" for="jk_l{{ $siswa->id }}">Laki-laki</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="jk" id="jk_p{{ $siswa->id }}" value="P" {{ $siswa->jk == 'P' ? 'checked' : '' }} required>
+                                    <input class="form-check-input" type="radio" name="jk"
+                                        id="jk_p{{ $siswa->id }}" value="P"
+                                        {{ $siswa->jk == 'P' ? 'checked' : '' }} required>
                                     <label class="form-check-label" for="jk_p{{ $siswa->id }}">Perempuan</label>
                                 </div>
                                 <div class="invalid-feedback">
@@ -226,7 +244,9 @@
                                 <select id="kelas_id{{ $siswa->id }}" name="kelas_id" class="form-control" required>
                                     <option value="" disabled>Pilih Kelas</option>
                                     @foreach ($kelass as $kelas)
-                                        <option value="{{ $kelas->id }}" {{ $siswa->kelas_id == $kelas->id ? 'selected' : '' }}>{{ $kelas->nm_kelas }}</option>
+                                        <option value="{{ $kelas->id }}"
+                                            {{ $siswa->kelas_id == $kelas->id ? 'selected' : '' }}>{{ $kelas->nm_kelas }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback">
@@ -235,10 +255,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="jurusan_id{{ $siswa->id }}">Jurusan</label>
-                                <select id="jurusan_id{{ $siswa->id }}" name="jurusan_id" class="form-control" required>
+                                <select id="jurusan_id{{ $siswa->id }}" name="jurusan_id" class="form-control"
+                                    required>
                                     <option value="" disabled>Pilih Jurusan</option>
                                     @foreach ($jurusans as $jurusan)
-                                        <option value="{{ $jurusan->id }}" {{ $siswa->jurusan_id == $jurusan->id ? 'selected' : '' }}>{{ $jurusan->nm_jurusan }}</option>
+                                        <option value="{{ $jurusan->id }}"
+                                            {{ $siswa->jurusan_id == $jurusan->id ? 'selected' : '' }}>
+                                            {{ $jurusan->nm_jurusan }}</option>
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback">
@@ -247,12 +270,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="semester_id{{ $siswa->id }}">Semester</label>
-                                <select id="semester_id{{ $siswa->id }}" name="semester_id" class="form-control" required>
+                                <select id="semester_id{{ $siswa->id }}" name="semester_id" class="form-control"
+                                    required>
                                     <option value="" disabled>Pilih Semester</option>
                                     @foreach ($semesters as $semester)
-                                    <option value="{{ $semester->id }}" {{ $siswa->semester_id == $semester->id ? 'selected' : '' }}>
-                                        {{ $semester->semester }} ({{ $semester->thn_ajaran }})
-                                    </option>
+                                        <option value="{{ $semester->id }}"
+                                            {{ $siswa->semester_id == $semester->id ? 'selected' : '' }}>
+                                            {{ $semester->semester }} ({{ $semester->thn_ajaran }})
+                                        </option>
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback">
@@ -261,9 +286,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="status_siswa{{ $siswa->id }}">Status</label>
-                                <select id="status_siswa{{ $siswa->id }}" name="status_siswa" class="form-control" required>
-                                    <option value="1" {{ $siswa->status_siswa == 1 ? 'selected' : '' }}>Aktif</option>
-                                    <option value="0" {{ $siswa->status_siswa == 0 ? 'selected' : '' }}>Tidak Aktif</option>
+                                <select id="status_siswa{{ $siswa->id }}" name="status_siswa" class="form-control"
+                                    required>
+                                    <option value="1" {{ $siswa->status_siswa == 1 ? 'selected' : '' }}>Aktif
+                                    </option>
+                                    <option value="0" {{ $siswa->status_siswa == 0 ? 'selected' : '' }}>Tidak Aktif
+                                    </option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Status wajib dipilih.
@@ -281,15 +309,24 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Librares -->
+    <!-- JS Libraries -->
     <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('library/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('library/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
+
     <!-- Page Specific JS File -->
+    <script src="{{ asset('js/page/modules-datatables.js') }}"></script>
+    <script src="{{ asset('js/page/modules-toastr.js') }}"></script>
+
     <script>
-        $(document).ready(function() {
-            $('#table-1').DataTable();
-        });
+        // Message with toastr
+        @if (session()->has('success'))
+            iziToast.success({
+                title: 'BERHASIL!',
+                message: '{{ session('success') }}',
+                position: 'topCenter'
+            });
+        @endif
     </script>
 @endpush
