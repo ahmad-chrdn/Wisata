@@ -163,7 +163,7 @@
                         <a class="nav-link" href="{{ route('admin.duk.index') }}">Naik Pangkat</a>
                     </li>
                 </ul>
-            </li>
-        </ul> --}}
+            </li> --}}
+        </ul>
     </aside>
 </div>
