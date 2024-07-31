@@ -1,24 +1,26 @@
 <?php
 
+use App\Http\Controllers\Admin\BermasalahController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\RekapitulasiController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\Kepala_Sekolah\DashboardController as KepalaSekolahDashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Kepala_Sekolah\PresensiSiswaController;
-use App\Http\Controllers\Kepala_Sekolah\BermasalahController;
+use App\Http\Controllers\Kepala_Sekolah\BermasalahController as KepalaSekolah_Bermasalah;
+use App\Http\Controllers\Wali_Kelas\BermasalahController as WaliKelas_Bermasalah;
 use App\Http\Controllers\Kepala_Sekolah\ProfileController as KepalaSekolahProfileController;
-use App\Http\Controllers\Guru_BK\Dashboard2Controller as GuruBKDashboard2Controller;
-use App\Http\Controllers\Guru_BK\PresensiSiswa2Controller;
-use App\Http\Controllers\Guru_BK\Bermasalah2Controller;
-use App\Http\Controllers\Guru_BK\Profile2Controller as Guru_BKProfile2Controller;
-use App\Http\Controllers\Wali_Kelas\Dashboard3Controller as WaliKelasDashboard3Controller;
-use App\Http\Controllers\Wali_Kelas\PresensiSiswa3Controller;
-use App\Http\Controllers\Wali_Kelas\Profile3Controller as Wali_KelasProfile3Controller;
-use App\Http\Controllers\Guru_Piket\Dashboard4Controller as GuruPiketDashboard4Controller;
-use App\Http\Controllers\Guru_Piket\PresensiSiswa4Controller;
-use App\Http\Controllers\Guru_Piket\Profile4Controller as Guru_PiketProfil4Controller;
-use App\Http\Controllers\Admin\JabatanController;
-use App\Http\Controllers\Admin\PangkatController;
-use App\Http\Controllers\Admin\PegawaiController;
+use App\Http\Controllers\Guru_BK\DashboardController as GuruBK_Dashboard;
+use App\Http\Controllers\Guru_BK\PresensiSiswaController as Guru_BK_Presensi;
+use App\Http\Controllers\Guru_BK\BermasalahController as Guru_BK_Bermasalah;
+use App\Http\Controllers\Guru_BK\ProfileController as GuruBK_Profile;
+use App\Http\Controllers\Wali_Kelas\DashboardController as Wali_Kelas_Dashboard;
+use App\Http\Controllers\Wali_Kelas\PresensiSiswaController as Wali_Kelas_Presensi;
+use App\Http\Controllers\Wali_Kelas\ProfileController as Wali_Kelas_Profile;
+use App\Http\Controllers\Guru_Piket\DashboardController as GuruPiket_Dashboard;
+use App\Http\Controllers\Guru_Piket\PresensiSiswaController as GuruPiket_Presensi;
+use App\Http\Controllers\Guru_Piket\ProfileController as Guru_PiketProfile;
 use App\Http\Controllers\Admin\KepalaController;
 use App\Http\Controllers\Admin\GuruBKController;
 use App\Http\Controllers\Admin\WaliKelasController;
@@ -27,11 +29,11 @@ use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\SiswaController;
-use App\Http\Controllers\Admin\DukController;
-use App\Http\Controllers\Admin\NotificationController;
-use App\Http\Controllers\Admin\PegawaiUserController;
 use App\Http\Controllers\Admin\PresensiController;
+use App\Http\Controllers\Guru_Piket\AbsensiSiswaController;
 use App\Http\Controllers\PegawaiExportController;
+use App\Http\Controllers\Absensi\AbsensiBarcodeController;
+use App\Http\Controllers\Wali_Kelas\WaliKelasBarcodeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,70 +51,46 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-// Redirect ke dashboard
-Route::redirect('/', '/admin/dashboard');
+// Rute untuk Absensi Siswa via Barcode
+Route::get('/absensi/siswa', [AbsensiBarcodeController::class, 'showForm'])->name('absensi.barcode.form');
+Route::post('/absensi/siswa', [AbsensiBarcodeController::class, 'store'])->name('absensi.barcode.store');
+Route::get('/absensi/riwayat', [AbsensiBarcodeController::class, 'showRiwayatForm'])->name('absensi.riwayat.form');
+Route::post('/absensi/riwayat', [AbsensiBarcodeController::class, 'showAbsensi'])->name('absensi.riwayat');
+
+// Redirect ke halaman login jika belum login
+Route::get('/', function () {
+    return redirect()->route('login');
+})->middleware('guest');
+
+// Rute untuk login
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login')
+    ->middleware('guest');
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+    ->name('login.store')
+    ->middleware('guest');
+
+// Rute untuk logout
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout')
+    ->middleware('auth');
 
 // Rute Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' => 'admin.'], function () {
     // Admin->Dashboard
     Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
-    // Admin->User Management
-    Route::get('/management', [PegawaiUserController::class, 'index'])->name('management.index');
-    Route::post('/management', [PegawaiUserController::class, 'store'])->name('management.store');
-    Route::put('/management/{id}', [PegawaiUserController::class, 'update'])->name('management.update');
-    Route::delete('/management/{id}', [PegawaiUserController::class, 'destroy'])->name('management.destroy');
-    // Admin->Notification
-    Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
-    // Admin->Profil
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Admin->Dashboard
-    // Route::get('/dashboard', DashboardController::class)->name('dashboard');
-    // Admin->Pangkat
-    Route::get('/pangkat', [PangkatController::class, 'index'])->name('pangkat.index');
-    Route::post('/pangkat', [PangkatController::class, 'store'])->name('pangkat.store');
-    Route::put('/pangkat/{id}', [PangkatController::class, 'update'])->name('pangkat.update');
-    Route::delete('/pangkat/{id}', [PangkatController::class, 'destroy'])->name('pangkat.destroy');
-    // Admin->Jabatan
-    Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan.index');
-    Route::post('/jabatan', [JabatanController::class, 'store'])->name('jabatan.store');
-    Route::put('/jabatan/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
-    Route::delete('/jabatan/{id}', [JabatanController::class, 'destroy'])->name('jabatan.destroy');
-    // Admin->Pegawai
-    Route::get('/pegawai/data', [PegawaiController::class, 'index'])->name('pegawai.index');
-    Route::get('/pegawai/export', [PegawaiExportController::class, 'export'])->name('pegawai.export');
-    Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
-    Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
-    Route::get('/pegawai/data/{id}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-    Route::put('/pegawai/data/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
-    Route::get('/pegawai/data/{id}', [PegawaiController::class, 'show'])->name('pegawai.show');
-    Route::delete('/pegawai/data/{id}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
-    Route::get('/pegawai/duk', [DukController::class, 'index'])->name('duk.index');
-    Route::post('/pegawai/duk', [DukController::class, 'store'])->name('duk.store');
-    Route::put('/pegawai/duk/{id}', [DukController::class, 'update'])->name('duk.update');
-    Route::get('/pegawai/duk/{id}', [DukController::class, 'show'])->name('duk.show');
-    Route::delete('/pegawai/duk/{id}', [DukController::class, 'destroy'])->name('duk.destroy');
-
 
     // Admin->Kepala Sekolah
     Route::get('/kepala-sekolah/data', [KepalaController::class, 'index'])->name('kepala-sekolah.index');
-    // Route::get('/kepala-sekolah/export', [PegawaiExportController::class, 'export'])->name('kepala-sekolah.export');
     Route::get('/kepala-sekolah/create', [KepalaController::class, 'create'])->name('kepala-sekolah.create');
     Route::post('/kepala-sekolah', [KepalaController::class, 'store'])->name('kepala-sekolah.store');
     Route::get('/kepala-sekolah/data/{id}/edit', [KepalaController::class, 'edit'])->name('kepala-sekolah.edit');
     Route::put('/kepala-sekolah/data/{id}', [KepalaController::class, 'update'])->name('kepala-sekolah.update');
     Route::delete('/kepala-sekolah/data/{id}', [KepalaController::class, 'destroy'])->name('kepala-sekolah.destroy');
-    // Route::get('/kepala-sekolah/duk', [DukController::class, 'index'])->name('duk.index');
-    // Route::post('/kepala-sekolah/duk', [DukController::class, 'store'])->name('duk.store');
-    // Route::put('/kepala-sekolah/duk/{id}', [DukController::class, 'update'])->name('duk.update');
-    // Route::get('/kepala-sekolah/duk/{id}', [DukController::class, 'show'])->name('duk.show');
-    // Route::delete('/kepala-sekolah/duk/{id}', [DukController::class, 'destroy'])->name('duk.destroy');
 
     // Admin->GuruBK
     Route::get('/guru-bk/data', [GuruBKController::class, 'index'])->name('guru-bk.index');
-    // Route::get('/guru-bk/export', [PegawaiExportController::class, 'export'])->name('guru-bk.export');
     Route::get('/guru-bk/create', [GuruBKController::class, 'create'])->name('guru-bk.create');
     Route::post('/guru-bk', [GuruBKController::class, 'store'])->name('guru-bk.store');
     Route::get('/guru-bk/data/{id}/edit', [GuruBKController::class, 'edit'])->name('guru-bk.edit');
@@ -121,7 +99,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
 
     // Admin->WaliKelas
     Route::get('/wali-kelas/data', [WaliKelasController::class, 'index'])->name('wali-kelas.index');
-    // Route::get('/wali-kelas/export', [PegawaiExportController::class, 'export'])->name('wali-kelas.export');
     Route::get('/wali-kelas/create', [WaliKelasController::class, 'create'])->name('wali-kelas.create');
     Route::post('/wali-kelas', [WaliKelasController::class, 'store'])->name('wali-kelas.store');
     Route::get('/wali-kelas/data/{id}/edit', [WaliKelasController::class, 'edit'])->name('wali-kelas.edit');
@@ -130,7 +107,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
 
     // Admin->GuruPiket
     Route::get('/guru-piket/data', [GuruPiketController::class, 'index'])->name('guru-piket.index');
-    // Route::get('/guru-piket/export', [PegawaiExportController::class, 'export'])->name('guru-piket.export');
     Route::get('/guru-piket/create', [GuruPiketController::class, 'create'])->name('guru-piket.create');
     Route::post('/guru-piket', [GuruPiketController::class, 'store'])->name('guru-piket.store');
     Route::get('/guru-piket/data/{id}/edit', [GuruPiketController::class, 'edit'])->name('guru-piket.edit');
@@ -149,7 +125,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
     Route::put('/kelola-akademik/jurusan/{id}', [JurusanController::class, 'update'])->name('kelola-akademik.jurusan.update');
     Route::delete('/kelola-akademik/jurusan/{id}', [JurusanController::class, 'destroy'])->name('kelola-akademik.jurusan.destroy');
 
-    // Admin->Semseter
+    // Admin->Semester
     Route::get('/kelola-akademik/semester', [SemesterController::class, 'index'])->name('kelola-akademik.semester.index');
     Route::post('/kelola-akademik/semester', [SemesterController::class, 'store'])->name('kelola-akademik.semester.store');
     Route::put('/kelola-akademik/semester/{id}', [SemesterController::class, 'update'])->name('kelola-akademik.semester.update');
@@ -161,17 +137,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
     Route::put('/kelola-siswa/siswa/{id}', [SiswaController::class, 'update'])->name('kelola-siswa.siswa.update');
     Route::delete('/kelola-siswa/siswa/{id}', [SiswaController::class, 'destroy'])->name('kelola-siswa.siswa.destroy');
     Route::get('/kelola-siswa/presensi', [PresensiController::class, 'index'])->name('kelola-siswa.presensi.index');
+    Route::get('/kelola-siswa/bermasalah', [BermasalahController::class, 'index'])->name('kelola-siswa.bermasalah.index');
+    Route::get('/kelola-siswa/bermasalah/{id}', [BermasalahController::class, 'show'])->name('kelola-siswa.bermasalah.show');
+
+    // Admin->Rekapitulasi
+    Route::get('/rekapitulasi/rekap/{id}', [RekapitulasiController::class, 'show'])->name('rekapitulasi.rekap.show');
+    Route::post('/rekapitulasi/rekap/{id}', [RekapitulasiController::class, 'rekapitulasi'])->name('rekapitulasi.rekap');
 
     // Admin->Profil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Contoh export
+    // Route::get('/pegawai/export', [PegawaiExportController::class, 'export'])->name('pegawai.export');
 });
 
 // Rute Kepala Sekolah
 Route::group(['prefix' => 'kepala_sekolah', 'middleware' => ['auth', 'verified'], 'as' => 'kepala_sekolah.'], function () {
     // Kepala Sekolah->Dashboard
     Route::get('/dashboard', KepalaSekolahDashboardController::class)->name('dashboard');
+
     // Kepala Sekolah->Profil
     Route::get('/profile', [KepalaSekolahProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [KepalaSekolahProfileController::class, 'update'])->name('profile.update');
@@ -181,53 +167,71 @@ Route::group(['prefix' => 'kepala_sekolah', 'middleware' => ['auth', 'verified']
     Route::get('/kelola-siswa/presensi', [PresensiSiswaController::class, 'index'])->name('kelola-siswa.presensi.index');
 
     // Kepala Sekolah->Bermasalah
-    Route::get('/kelola-siswa/bermasalah', [BermasalahController::class, 'index'])->name('kelola-siswa.bermasalah.index');
-
+    Route::get('/kelola-siswa/bermasalah', [KepalaSekolah_Bermasalah::class, 'index'])->name('kelola-siswa.bermasalah.index');
+    Route::get('/kelola-siswa/bermasalah/{id}', [KepalaSekolah_Bermasalah::class, 'show'])->name('kelola-siswa.bermasalah.show');
 });
 
 // Rute Guru Bk
 Route::group(['prefix' => 'guru_bk', 'middleware' => ['auth', 'verified'], 'as' => 'guru_bk.'], function () {
     // Guru Bk->Dashboard
-    Route::get('/dashboard', GuruBKDashboard2Controller::class)->name('dashboard');
+    Route::get('/dashboard', GuruBK_Dashboard::class)->name('dashboard');
+
     // Guru Bk->Profil
-    Route::get('/profile', [Guru_BKProfile2Controller::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [Guru_BKProfile2Controller::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [Guru_BKProfile2Controller::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [GuruBK_Profile::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [GuruBK_Profile::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [GuruBK_Profile::class, 'destroy'])->name('profile.destroy');
 
     // Guru Bk->Siswa
-    Route::get('/guru-bk/presensi', [PresensiSiswa2Controller::class, 'index'])->name('guru-bk.presensi.index');
+    Route::get('/kelola-siswa/presensi', [Guru_BK_Presensi::class, 'index'])->name('kelola-siswa.presensi.index');
 
     // Guru Bk->Bermasalah
-    Route::get('/guru-bk/bermasalah', [Bermasalah2Controller::class, 'index'])->name('guru-bk.bermasalah.index');
-
+    Route::get('/kelola-siswa/bermasalah', [Guru_BK_Bermasalah::class, 'index'])->name('kelola-siswa.bermasalah.index');
+    Route::post('/kelola-siswa/bermasalah', [Guru_BK_Bermasalah::class, 'store'])->name('kelola-siswa.bermasalah.store');
+    Route::put('/kelola-siswa/bermasalah/{id}', [Guru_BK_Bermasalah::class, 'update'])->name('kelola-siswa.bermasalah.update');
+    Route::get('/kelola-siswa/bermasalah/{id}', [Guru_BK_Bermasalah::class, 'show'])->name('kelola-siswa.bermasalah.show');
+    Route::delete('/kelola-siswa/bermasalah/{id}', [Guru_BK_Bermasalah::class, 'destroy'])->name('kelola-siswa.bermasalah.destroy');
 });
 
 // Rute Wali Kelas
 Route::group(['prefix' => 'wali_kelas', 'middleware' => ['auth', 'verified'], 'as' => 'wali_kelas.'], function () {
     // Wali Kelas->Dashboard
-    Route::get('/dashboard', WaliKelasDashboard3Controller::class)->name('dashboard');
+    Route::get('/dashboard', Wali_Kelas_Dashboard::class)->name('dashboard');
+
     // Wali Kelas->Profil
-    Route::get('/profile', [Wali_KelasProfile3Controller::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [Wali_KelasProfile3Controller::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [Wali_KelasProfile3Controller::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [Wali_Kelas_Profile::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [Wali_Kelas_Profile::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [Wali_Kelas_Profile::class, 'destroy'])->name('profile.destroy');
 
-    // Wali Kelas->Siswa
-    Route::get('/wali-kelas/presensi', [PresensiSiswa3Controller::class, 'index'])->name('wali-kelas.presensi.index');
+    // Wali Kelas->Cetak Barcode
+    Route::get('/kelola-siswa/cetak-barcode', [WaliKelasBarcodeController::class, 'showForm'])->name('cetak-barcode');
+    Route::get('/barcode/download', [BarcodeController::class, 'download'])->name('barcode.download');
 
+    // Wali Kelas->Presensi Siswa
+    Route::get('/kelola-siswa/presensi', [Wali_Kelas_Presensi::class, 'index'])->name('kelola-siswa.presensi.index');
+
+    // Wali Kelas->Bermasalah
+    Route::get('/kelola-siswa/bermasalah', [WaliKelas_Bermasalah::class, 'index'])->name('kelola-siswa.bermasalah.index');
+    Route::get('/kelola-siswa/bermasalah/{id}', [WaliKelas_Bermasalah::class, 'show'])->name('kelola-siswa.bermasalah.show');
 });
 
 // Rute Guru Piket
 Route::group(['prefix' => 'guru_piket', 'middleware' => ['auth', 'verified'], 'as' => 'guru_piket.'], function () {
     // Guru Piket->Dashboard
-    Route::get('/dashboard', GuruPiketDashboard4Controller::class)->name('dashboard');
+    Route::get('/dashboard', GuruPiket_Dashboard::class)->name('dashboard');
+
     // Guru Piket->Profil
-    Route::get('/profile', [Guru_PiketProfil4Controller::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [Guru_PiketProfil4Controller::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [Guru_PiketProfil4Controller::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [Guru_PiketProfile::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [Guru_PiketProfile::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [Guru_PiketProfile::class, 'destroy'])->name('profile.destroy');
 
-    // Guru Piket->Siswa
-    Route::get('/guru-piket/presensi', [PresensiSiswa4Controller::class, 'index'])->name('guru-piket.presensi.index');
+    // Guru Bk->Absensi Siswa
+    Route::get('/kelola-siswa/absensi', [AbsensiSiswaController::class, 'index'])->name('kelola-siswa.absensi.index');
+    Route::post('/kelola-siswa/absensi', [AbsensiSiswaController::class, 'store'])->name('kelola-siswa.absensi.store');
 
+    // Guru Piket->Presensi Siswa
+    Route::get('/kelola-siswa/presensi', [GuruPiket_Presensi::class, 'index'])->name('kelola-siswa.presensi.index');
+    Route::get('/kelola-siswa/presensi/{id}/edit', [GuruPiket_Presensi::class, 'edit'])->name('kelola-siswa.presensi.edit');
+    Route::put('/kelola-siswa/presensi/{id}', [GuruPiket_Presensi::class, 'update'])->name('kelola-siswa.presensi.update');
 });
 
 require __DIR__ . '/auth.php';

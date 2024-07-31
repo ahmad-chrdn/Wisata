@@ -16,7 +16,7 @@
                 <h1>Wali Kelas</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Wali Kelas</a></div>
+                    <div class="breadcrumb-item"><a href="#">Kelola Wali Kelas</a></div>
                     <div class="breadcrumb-item">Data Wali Kelas</div>
                 </div>
             </div>
@@ -30,8 +30,6 @@
                             <div class="card-header">
                                 <a href="{{ route('admin.wali-kelas.create') }}" class="btn btn-primary"
                                     style="margin-right: 10px;"><i class="fa fa-plus"></i> Tambah</a>
-                                {{-- <a href="{{ route('admin.pegawai.export') }}" class="btn btn-primary btn-md"><i
-                                        class="fa fa-download"></i> Excel</a> --}}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

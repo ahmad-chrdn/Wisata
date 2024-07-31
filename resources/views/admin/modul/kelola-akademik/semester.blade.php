@@ -16,7 +16,8 @@
                 <h1>Semester</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item">Semester</div>
+                    <div class="breadcrumb-item active"><a href="#">Kelola Akademik</a></div>
+                    <div class="breadcrumb-item">Data Semester</div>
                 </div>
             </div>
 

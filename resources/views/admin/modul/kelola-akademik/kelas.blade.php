@@ -16,7 +16,8 @@
                 <h1>Kelas</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item">Kelas</div>
+                    <div class="breadcrumb-item active"><a href="#">Kelola Akademik</a></div>
+                    <div class="breadcrumb-item">Data Kelas</div>
                 </div>
             </div>
 
@@ -74,8 +75,7 @@
     </div>
 
     <!-- Modal Tambah Kelas -->
-    <div class="modal fade" id="addKelas" tabindex="-1" role="dialog" aria-labelledby="addKelasLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="addKelas" tabindex="-1" role="dialog" aria-labelledby="addKelasLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

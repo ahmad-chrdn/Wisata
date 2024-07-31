@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('status_presensi', ['Hadir', 'Terlambat', 'Izin', 'Sakit', 'Alpa']);
             $table->dateTime('waktu_presensi');
             // Foreign key untuk menghubungkan tabel presensi dengan tabel user
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

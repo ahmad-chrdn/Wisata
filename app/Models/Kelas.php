@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory;
-    protected $table = 'kelass'; // Pastikan nama tabel benar 
+    protected $table = 'kelass'; // Pastikan nama tabel benar
     protected $fillable = [
         'kd_kelas',
         'nm_kelas',

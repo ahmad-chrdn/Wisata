@@ -1,13 +1,11 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('admin.dashboard') }}"><img
-                    src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
+            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
                     style="height: 90px" alt="SMKN 01 SEMPARUK"></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('admin.dashboard') }}"><img
-                    src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
+            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/TUT WURI HANDAYANI.png') }}"
                     alt="SMKN 01 SEMPARUK" class="img-fluid" style="max-width: 90px; max-height: 90px;"></a>
         </div>
         <ul class="sidebar-menu">
@@ -97,7 +95,8 @@
                 </ul>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/kelola-akademik/semester') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.kelola-akademik.semester.index') }}">Data Semester</a>
+                        <a class="nav-link" href="{{ route('admin.kelola-akademik.semester.index') }}">Data
+                            Semester</a>
                     </li>
                 </ul>
             </li>
@@ -113,57 +112,34 @@
                         <a class="nav-link" href="{{ route('admin.kelola-siswa.siswa.index') }}">Data Siswa</a>
                     </li>
                     <li class="{{ Request::is('admin/kelola-siswa/presensi') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.kelola-siswa.presensi.index') }}">Data Presensi Siswa</a>
+                        <a class="nav-link" href="{{ route('admin.kelola-siswa.presensi.index') }}">Data Presensi
+                            Siswa</a>
+                    </li>
+                    <li class="{{ Request::is('admin/kelola-siswa/bermasalah') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.kelola-siswa.bermasalah.index') }}">Data Siswa
+                            Bermasalah</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ Request::is('admin/pegawai*') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Request::is('admin/rekapitulasi*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-user-friends"></i>
                     <span>Rekapitulasi</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="{{ Request::is('admin/pegawai/create') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.pegawai.create') }}">Kelas x</a>
-                    </li>
-                    <li class="{{ Request::is('admin/pegawai/data') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.pegawai.index') }}">Kelas XI</a>
-                    </li>
+                    @if ($kelasKosong)
+                        <li class="text-center text-muted">Tidak ada rekapitulasi</li>
+                    @else
+                        @foreach ($kelas as $kls)
+                            <li class="{{ Request::is('admin/rekapitulasi/rekap/' . $kls->id) ? 'active' : '' }}">
+                                <a class="nav-link"
+                                    href="{{ route('admin.rekapitulasi.rekap.show', $kls->id) }}">{{ $kls->nm_kelas }}</a>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </li>
-
-            {{-- <li class='{{ Request::is('admin/pangkat') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('admin.pangkat.index') }}">
-                    <i class="fas fa-star"></i>
-                    <span>Pangkat</span>
-                </a>
-            </li>
-
-            <li class='{{ Request::is('admin/jabatan') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('admin.jabatan.index') }}">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Jabatan</span>
-                </a>
-            </li>
-
-            <li class="nav-item dropdown {{ Request::is('admin/pegawai*') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
-                    <span>Pegawai</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="{{ Request::is('admin/pegawai/create') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.pegawai.create') }}">Tambah Pegawai</a>
-                    </li>
-                    <li class="{{ Request::is('admin/pegawai/data') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.pegawai.index') }}">Data Pegawai</a>
-                    </li>
-                    <li class='{{ Request::is('admin/pegawai/duk') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ route('admin.duk.index') }}">Naik Pangkat</a>
-                    </li>
-                </ul>
-            </li> --}}
         </ul>
     </aside>
 </div>

@@ -2,52 +2,34 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-// Jika ingin menggunakan verifikasi email
-// class User extends Authenticatable implements MustVerifyEmail
-class User extends Authenticatable
+class Presensi extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    use HasFactory;
+    protected $table = 'presensis'; // Pastikan nama tabel benar
     protected $fillable = [
         'hari',
-        'siswa_id',
         'siswa_id',
         'status_presensi',
         'waktu_presensi',
         'user_id',
-        'user_id',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_secret',
-        'two_factor_recovery_codes'
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'waktu_presensi' => 'datetime',
     ];
+
+    // Relasi ke model Siswa
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
+
+    // Relasi ke model User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

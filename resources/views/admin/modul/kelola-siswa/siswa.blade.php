@@ -16,6 +16,7 @@
                 <h1>Data Siswa</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Kelola Siswa</a></div>
                     <div class="breadcrumb-item">Data Siswa</div>
                 </div>
             </div>

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Duk;
-use App\Models\Jabatan;
-use App\Models\Pangkat;
-use App\Models\Pegawai;
+use App\Models\Jurusan;
+use App\Models\Kelas;
+use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -24,15 +24,13 @@ class DashboardController extends Controller
     // Halaman Dashboard
     public function __invoke(Request $request)
     {
-        // $totalPangkat = Pangkat::count();
-        // $totalJabatan = Jabatan::count();
-        // $totalPegawai = Pegawai::count();
-        // $totalDuk = Duk::count();
-        // $genderData = [
-        //     'laki_laki' => Pegawai::where('jk', 'L')->count(),
-        //     'perempuan' => Pegawai::where('jk', 'P')->count(),
-        // ];
-        // return view('dashboard', compact('totalPangkat', 'totalJabatan', 'totalPegawai', 'totalDuk', 'genderData'));
-        return view('admin.dashboard');
+        $totalSiswa = Siswa::count();
+        $totalKepalaSekolah = User::where('role','kepala sekolah')->count();
+        $totalWaliKelas = User::where('role','wali kelas')->count();
+        $totalGuruBK = User::where('role','guru bk')->count();
+        $totalGuruPiket = User::where('role','guru piket')->count();
+        $totalJurusan = Jurusan::count();
+        $totalKelas = Kelas::count();
+        return view('admin.dashboard', compact('totalSiswa','totalKepalaSekolah','totalWaliKelas','totalGuruBK','totalGuruPiket','totalJurusan','totalKelas'));
     }
 }

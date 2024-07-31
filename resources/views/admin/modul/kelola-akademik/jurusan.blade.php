@@ -16,7 +16,8 @@
                 <h1>Jurusan</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item">Jurusan</div>
+                    <div class="breadcrumb-item active"><a href="#">Kelola Akademik</a></div>
+                    <div class="breadcrumb-item">Data Jurusan</div>
                 </div>
             </div>
 
@@ -86,8 +87,8 @@
                 </div>
                 <div class="modal-body">
                     <!-- Isi formulir untuk menambahkan data -->
-                    <form method="post" action="{{ route('admin.kelola-akademik.jurusan.store') }}" class="needs-validation"
-                        novalidate="">
+                    <form method="post" action="{{ route('admin.kelola-akademik.jurusan.store') }}"
+                        class="needs-validation" novalidate="">
                         @csrf
                         <div class="form-group">
                             <label for="kd_jurusan">Kode Jurusan</label>

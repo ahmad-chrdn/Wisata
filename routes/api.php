@@ -16,9 +16,6 @@ use App\Http\Controllers\Admin\ReadingController;
 |
 */
 
-Route::post('/pegawai/duk', [DukController::class, 'store']);
-
-Route::post('/readings', [ReadingController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
