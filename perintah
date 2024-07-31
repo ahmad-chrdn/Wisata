@@ -1,0 +1,3 @@
+Rules:
+php artisan db:seed --class=PresensiSeeder
+php artisan db:seed --class=ClearPresensiSeeder
