@@ -29,7 +29,7 @@
                             <h3 class="text-dark">Informasi Sekolah</h3>
                         </div>
                         <div class="card-body">
-                            <img src="{{ asset('img/TUT WURI HANDAYANI.png') }}" alt="Logo" class="logo-image"
+                            <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
                                 style="display: block; margin: auto; width: 110px; height: auto;">
                             <p style="text-align: justify;">
                                 SMKN 1 Semparuk adalah sebuah institusi pendidikan SMK negeri yang berlokasi di Jl.

@@ -8,7 +8,7 @@
         </ul>
         <div class="search-element">
             <a href="#" class="logo">
-                <img src="{{ asset('img/TUT WURI HANDAYANI.png') }}" alt="Logo" class="logo-image"
+                <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
                     style="width: 90px; height: auto;">
             </a>
         </div>
