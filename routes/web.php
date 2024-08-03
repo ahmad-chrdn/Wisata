@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\BermasalahController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\RekapitulasiController;
+use App\Http\Controllers\Wali_Kelas\RekapitulasiController as Wali_Kelas_Rekap;
+use App\Http\Controllers\Guru_Piket\RekapitulasiController as GuruPiket_Rekap;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\Kepala_Sekolah\DashboardController as KepalaSekolahDashboardController;
@@ -31,7 +33,6 @@ use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\PresensiController;
 use App\Http\Controllers\Guru_Piket\AbsensiSiswaController;
-use App\Http\Controllers\PegawaiExportController;
 use App\Http\Controllers\Absensi\AbsensiBarcodeController;
 use App\Http\Controllers\Wali_Kelas\WaliKelasBarcodeController;
 use Illuminate\Support\Facades\Route;
@@ -148,9 +149,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' =>
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Contoh export
-    // Route::get('/pegawai/export', [PegawaiExportController::class, 'export'])->name('pegawai.export');
 });
 
 // Rute Kepala Sekolah
@@ -212,6 +210,10 @@ Route::group(['prefix' => 'wali_kelas', 'middleware' => ['auth', 'verified'], 'a
     // Wali Kelas->Bermasalah
     Route::get('/kelola-siswa/bermasalah', [WaliKelas_Bermasalah::class, 'index'])->name('kelola-siswa.bermasalah.index');
     Route::get('/kelola-siswa/bermasalah/{id}', [WaliKelas_Bermasalah::class, 'show'])->name('kelola-siswa.bermasalah.show');
+
+    // Wali Kelas->Rekapitulasi
+    Route::get('/rekapitulasi/rekap/{id}', [Wali_Kelas_Rekap::class, 'show'])->name('rekapitulasi.rekap.show');
+    Route::post('/rekapitulasi/rekap/{id}', [Wali_Kelas_Rekap::class, 'rekapitulasi'])->name('rekapitulasi.rekap');
 });
 
 // Rute Guru Piket
@@ -232,6 +234,10 @@ Route::group(['prefix' => 'guru_piket', 'middleware' => ['auth', 'verified'], 'a
     Route::get('/kelola-siswa/presensi', [GuruPiket_Presensi::class, 'index'])->name('kelola-siswa.presensi.index');
     Route::get('/kelola-siswa/presensi/{id}/edit', [GuruPiket_Presensi::class, 'edit'])->name('kelola-siswa.presensi.edit');
     Route::put('/kelola-siswa/presensi/{id}', [GuruPiket_Presensi::class, 'update'])->name('kelola-siswa.presensi.update');
+
+    // Guru Piket->Rekapitulasi
+    Route::get('/rekapitulasi/rekap/{id}', [GuruPiket_Rekap::class, 'show'])->name('rekapitulasi.rekap.show');
+    Route::post('/rekapitulasi/rekap/{id}', [GuruPiket_Rekap::class, 'rekapitulasi'])->name('rekapitulasi.rekap');
 });
 
 require __DIR__ . '/auth.php';

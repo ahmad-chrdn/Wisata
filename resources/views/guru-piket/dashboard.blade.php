@@ -30,7 +30,8 @@
                         </div>
                         <div class="card-body">
                             <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
-                                style="display: block; margin: auto; width: 110px; height: auto;">
+                                style="display: block; margin: auto; width: 250px; height: auto;">
+                            <br>
                             <p style="text-align: justify;">
                                 SMKN 1 Semparuk adalah sebuah institusi pendidikan SMK negeri yang berlokasi di Jl.
                                 Pendidikan, Kab. Sambas.
@@ -46,8 +47,8 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
-                        <div class="card-icon bg-danger">
-                            <i class="fas fa-star"></i>
+                        <div class="card-icon bg-primary">
+                            <i class="fas fa-users"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -59,8 +60,8 @@
                         </div>
                     </div>
                     <div class="card card-statistic-1">
-                        <div class="card-icon bg-success">
-                            <i class="fas fa-sort-numeric-up"></i>
+                        <div class="card-icon bg-primary">
+                            <i class="fas fa-book-open"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -75,7 +76,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="fas fa-user-friends"></i>
+                            <i class="fas fa-school"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">

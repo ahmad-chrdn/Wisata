@@ -1,12 +1,12 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('kepala_sekolah.dashboard') }}"><img src="{{ asset('img/SMK.png') }}"
-                    style="height: 90px" alt="SMKN 01 SEMPARUK"></a>
+            <a href="{{ route('kepala_sekolah.dashboard') }}"><img src="{{ asset('img/SMK.png') }}" style="height: 70px"
+                    alt="SMKN 01 SEMPARUK"></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('kepala_sekolah.dashboard') }}"><img src="{{ asset('img/SMK.png') }}"
-                    alt="SMKN 01 SEMPARUK" class="img-fluid" style="max-width: 90px; max-height: 90px;"></a>
+            <a href="{{ route('kepala_sekolah.dashboard') }}"><img src="{{ asset('img/SMK.png') }}" alt="SMKN 01 SEMPARUK"
+                    class="img-fluid" style="max-width: 90px; max-height: 40px;"></a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Beranda</li>

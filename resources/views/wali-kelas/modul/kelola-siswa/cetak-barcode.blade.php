@@ -29,6 +29,7 @@
                                         class="fa fa-download"></i> Cetak Barcode</a>
                             </div>
                             <div class="card-body text-center">
+                                {{-- Alamat Absensi Siswa --}}
                                 {!! QrCode::size(250)->generate('http://192.168.5.45:9090/absensi/siswa') !!}
                                 <p style="color: red;">Barcode ini digunakan untuk absensi siswa</p>
                             </div>

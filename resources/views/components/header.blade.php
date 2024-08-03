@@ -9,7 +9,7 @@
         <div class="search-element">
             <a href="#" class="logo">
                 <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
-                    style="width: 90px; height: auto;">
+                    style="width: 66px; height: auto;">
             </a>
         </div>
     </form>

@@ -30,7 +30,8 @@
                         </div>
                         <div class="card-body">
                             <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
-                                style="display: block; margin: auto; width: 110px; height: auto;">
+                                style="display: block; margin: auto; width: 250px; height: auto;">
+                            <br>
                             <p style="text-align: justify;">
                                 SMKN 1 Semparuk adalah sebuah institusi pendidikan SMK negeri yang berlokasi di Jl.
                                 Pendidikan, Kab. Sambas.
@@ -47,8 +48,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <a href="{{ route('admin.kelola-siswa.siswa.index') }}">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
-                                <i class="fas fa-star"></i>
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-users"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -63,7 +64,7 @@
                     <a href="{{ route('admin.wali-kelas.index') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
-                                <i class="fas fa-user-friends"></i>
+                                <i class="fas fa-chalkboard-teacher"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -78,7 +79,7 @@
                     <a href="{{ route('admin.guru-piket.index') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
-                                <i class="fas fa-user-friends"></i>
+                                <i class="fas fa-user-check"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -93,7 +94,7 @@
                     <a href="{{ route('admin.kelola-akademik.kelas.index') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
-                                <i class="fas fa-user-friends"></i>
+                                <i class="fas fa-school"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -107,10 +108,25 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="{{ route('admin.kepala-sekolah.index') }}">
+                    <a href="{{ route('admin.kelola-siswa.bermasalah.index') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-warning">
-                                <i class="fas fa-briefcase"></i>
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Siswa Bermasalah</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $totalMasalah }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{ route('admin.kepala-sekolah.index') }}">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-user-tie"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -124,8 +140,8 @@
                     </a>
                     <a href="{{ route('admin.guru-bk.index') }}">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-success">
-                                <i class="fas fa-sort-numeric-up"></i>
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-user-tie"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -139,8 +155,8 @@
                     </a>
                     <a href="{{ route('admin.kelola-akademik.jurusan.index') }}">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-success">
-                                <i class="fas fa-sort-numeric-up"></i>
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-book-open"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">

@@ -15,7 +15,23 @@
             </div>
 
             <div class="mt-3">
-                <a href="{{ route('admin.dashboard') }}">Kembali ke Beranda</a>
+                @php
+                    $role = auth()->user()->role ?? 'guest';
+                @endphp
+
+                @if ($role == 'admin')
+                    <a href="{{ route('admin.dashboard') }}">Kembali ke Beranda Admin</a>
+                @elseif($role == 'kepala sekolah')
+                    <a href="{{ route('kepala_sekolah.dashboard') }}">Kembali ke Beranda Kepala Sekolah</a>
+                @elseif($role == 'guru bk')
+                    <a href="{{ route('guru_bk.dashboard') }}">Kembali ke Beranda Guru BK</a>
+                @elseif($role == 'wali kelas')
+                    <a href="{{ route('wali_kelas.dashboard') }}">Kembali ke Beranda Wali Kelas</a>
+                @elseif($role == 'guru piket')
+                    <a href="{{ route('guru_piket.dashboard') }}">Kembali ke Beranda Guru Piket</a>
+                @else
+                    <a href="{{ url('/') }}">Kembali ke Beranda</a>
+                @endif
             </div>
         </div>
     </div>

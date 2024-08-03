@@ -21,8 +21,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Menggunakan view composer untuk menyuntikkan data kelas ke sidebar
+        // View composer untuk sidebar-admin
         view()->composer('components.sidebar-admin', function ($view) {
+            $kelas = Kelas::all();
+            $kelasKosong = $kelas->isEmpty();
+            $view->with(compact('kelas', 'kelasKosong'));
+        });
+
+        // View composer untuk sidebar-wali_kelas
+        view()->composer('components.sidebar-wali_kelas', function ($view) {
+            $kelas = Kelas::all();
+            $kelasKosong = $kelas->isEmpty();
+            $view->with(compact('kelas', 'kelasKosong'));
+        });
+
+        // View composer untuk sidebar-guru_piket
+        view()->composer('components.sidebar-guru_piket', function ($view) {
             $kelas = Kelas::all();
             $kelasKosong = $kelas->isEmpty();
             $view->with(compact('kelas', 'kelasKosong'));

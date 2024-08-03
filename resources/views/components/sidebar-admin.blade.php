@@ -1,12 +1,12 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/SMK.png') }}"
-                    style="height: 90px" alt="SMKN 01 SEMPARUK"></a>
+            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/SMK.png') }}" style="height: 70px"
+                    alt="SMKN 01 SEMPARUK"></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/SMK.png') }}"
-                    alt="SMKN 01 SEMPARUK" class="img-fluid" style="max-width: 90px; max-height: 90px;"></a>
+            <a href="{{ route('admin.dashboard') }}"><img src="{{ asset('img/SMK.png') }}" alt="SMKN 01 SEMPARUK"
+                    class="img-fluid" style="max-width: 90px; max-height: 40px;"></a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Beranda</li>
@@ -20,7 +20,7 @@
             <li class="menu-header">Menu Utama</li>
             <li class="nav-item dropdown {{ Request::is('admin/kepala-sekolah*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-chalkboard-teacher"></i>
                     <span>Kelola Kepala Sekolah</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -35,22 +35,22 @@
 
             <li class="nav-item dropdown {{ Request::is('admin/guru-bk*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
-                    <span>Kelola Guru Bk</span>
+                    <i class="fas fa-user-tie"></i>
+                    <span>Kelola Guru BK</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/guru-bk/create') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.guru-bk.create') }}">Buat Akun</a>
                     </li>
                     <li class="{{ Request::is('admin/guru-bk/data') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.guru-bk.index') }}">Data Guru Bk</a>
+                        <a class="nav-link" href="{{ route('admin.guru-bk.index') }}">Data Guru BK</a>
                     </li>
                 </ul>
             </li>
 
             <li class="nav-item dropdown {{ Request::is('admin/wali-kelas*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-users"></i>
                     <span>Kelola Wali Kelas</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -65,7 +65,7 @@
 
             <li class="nav-item dropdown {{ Request::is('admin/guru-piket*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-calendar-check"></i>
                     <span>Kelola Guru Piket</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -80,20 +80,16 @@
 
             <li class="nav-item dropdown {{ Request::is('admin/kelola-akademik*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-book"></i>
                     <span>Kelola Akademik</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/kelola-akademik/kelas') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-akademik.kelas.index') }}">Data Kelas</a>
                     </li>
-                </ul>
-                <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/kelola-akademik/jurusan') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-akademik.jurusan.index') }}">Data Jurusan</a>
                     </li>
-                </ul>
-                <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/kelola-akademik/semester') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.kelola-akademik.semester.index') }}">Data
                             Semester</a>
@@ -101,10 +97,9 @@
                 </ul>
             </li>
 
-
             <li class="nav-item dropdown {{ Request::is('admin/kelola-siswa*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-user-graduate"></i>
                     <span>Kelola Siswa</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -124,7 +119,7 @@
 
             <li class="nav-item dropdown {{ Request::is('admin/rekapitulasi*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-chart-line"></i>
                     <span>Rekapitulasi</span>
                 </a>
                 <ul class="dropdown-menu">
