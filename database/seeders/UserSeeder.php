@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'nama' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('smkn1sambas'), // Ganti dengan password yang diinginkan
+            'password' => Hash::make('wisata123'), // Ganti dengan password yang diinginkan
             'foto' => 'avatar-default.png',
             'role' => 'admin',
             'created_at' => now(),

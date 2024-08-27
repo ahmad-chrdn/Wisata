@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\KategoriWisataController;
+use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\BermasalahController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\RekapitulasiController;
@@ -34,6 +36,8 @@ use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\PresensiController;
 use App\Http\Controllers\Guru_Piket\AbsensiSiswaController;
 use App\Http\Controllers\Absensi\AbsensiBarcodeController;
+use App\Http\Controllers\Admin\FavoriteController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Wali_Kelas\WaliKelasBarcodeController;
 use Illuminate\Support\Facades\Route;
 
@@ -81,6 +85,27 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified'], 'as' => 'admin.'], function () {
     // Admin->Dashboard
     Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
+
+    // Admin->Kelola Wisata
+    // Kategori
+    Route::get('/kelola-wisata/kategori', [KategoriWisataController::class, 'index'])->name('kelola-wisata.kategori.index');
+    Route::post('/kelola-wisata/kategori', [KategoriWisataController::class, 'store'])->name('kelola-wisata.kategori.store');
+    Route::put('/kelola-wisata/kategori/{id}', [KategoriWisataController::class, 'update'])->name('kelola-wisata.kategori.update');
+    Route::delete('/kelola-wisata/kategori/{id}', [KategoriWisataController::class, 'destroy'])->name('kelola-wisata.kategori.destroy');
+    // Wisata
+    Route::get('/kelola-wisata/destination', [DestinationController::class, 'index'])->name('kelola-wisata.destination.index');
+    Route::post('/kelola-wisata/destination', [DestinationController::class, 'store'])->name('kelola-wisata.destination.store');
+    Route::put('/kelola-wisata/destination/{id}', [DestinationController::class, 'update'])->name('kelola-wisata.destination.update');
+    Route::delete('/kelola-wisata/destination/{id}', [DestinationController::class, 'destroy'])->name('kelola-wisata.destination.destroy');
+    // Favorit
+    Route::get('/favorite/data', [FavoriteController::class, 'index'])->name('favorite.index');
+    Route::delete('/favorite/data{id}', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+    // Review
+    Route::get('/reviews/data', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::delete('/reviews/data{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+    // Route::get('/kelola-wisata/presensi', [PresensiController::class, 'index'])->name('kelola-wisata.presensi.index');
+    // Route::get('/kelola-wisata/bermasalah', [BermasalahController::class, 'index'])->name('kelola-wisata.bermasalah.index');
+    // Route::get('/kelola-wisata/bermasalah/{id}', [BermasalahController::class, 'show'])->name('kelola-wisata.bermasalah.show');
 
     // Admin->Kepala Sekolah
     Route::get('/kepala-sekolah/data', [KepalaController::class, 'index'])->name('kepala-sekolah.index');

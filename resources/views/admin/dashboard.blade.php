@@ -18,34 +18,26 @@
                         class="hero bg-primary text-white d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div class="hero-inner">
                             <h2>Halo, <b class="text-warning">{{ auth()->user()->nama }}</b></h2>
-                            <p class="lead">Selamat Datang, di Website Kehadiran SMK NEGERI 01 SEMPARUK SAMBAS.</p>
+                            {{-- <p class="lead">Selamat Datang, di Website Kehadiran SMK NEGERI 01 SEMPARUK SAMBAS.</p> --}}
                         </div>
                         <div id="jam" class="ml-md-auto py-2 py-md-0" style="font-size: 30px;"></div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="text-dark">Informasi Sekolah</h3>
+                            <h3 class="text-dark">Informasi</h3>
                         </div>
                         <div class="card-body">
-                            <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
+                            {{-- <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
                                 style="display: block; margin: auto; width: 250px; height: auto;">
-                            <br>
+                            <br> --}}
                             <p style="text-align: justify;">
-                                SMKN 1 Semparuk adalah sebuah institusi pendidikan SMK negeri yang berlokasi di Jl.
-                                Pendidikan, Kab. Sambas.
-                                SMK negeri ini mengawali perjalanannya pada tahun 2007. Pada waktu ini SMK Negeri 1 Semparuk
-                                memakai panduan kurikulum belajar SMK 2013 REV. Agribisnis Pengolahan Hasil Pertanian. SMKN
-                                1 Semparuk dibawah kepemimpinan seorang kepala sekolah yang bernama Indro Wiretno dan
-                                operator sekolah Eko Nuryanto. Sp.
-                                Akreditasi SMKN 1 Semparuk
-                                SMKN 1 Semparuk terakreditasi grade B dengan nilai 82 (akreditasi tahun 2019) dari BAN-S/M
-                                (Badan Akreditasi Nasional) Sekolah/Madrasah.</p>
+                                Alzahri</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <a href="{{ route('admin.kelola-siswa.siswa.index') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
@@ -168,7 +160,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> --}}
             </div>
         </section>
     </div>
