@@ -29,8 +29,8 @@ class Destination extends Model
         return $this->hasMany(Favorite::class);
     }
 
-    // public function reviews()
-    // {
-    //     return $this->hasMany(Review::class);
-    // }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
