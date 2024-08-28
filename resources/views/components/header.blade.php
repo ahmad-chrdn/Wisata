@@ -6,12 +6,12 @@
                     <i class="fas fa-bars"></i></a>
             </li>
         </ul>
-        <div class="search-element">
+        {{-- <div class="search-element">
             <a href="#" class="logo">
                 <img src="{{ asset('img/SMK.png') }}" alt="Logo" class="logo-image"
                     style="width: 66px; height: auto;">
             </a>
-        </div>
+        </div> --}}
     </form>
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown"
